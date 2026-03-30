@@ -1,0 +1,42 @@
+plugins {
+    id 'scala'
+}
+
+allprojects {
+    group = 'com.learning'
+    version = '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'scala'
+    apply plugin: 'java'
+
+    ext {
+        scalaVersion       = '2.12.18'
+        scalaCompatVersion = '2.12'
+        sparkVersion       = '3.4.1'
+        deltaVersion       = '2.4.0'
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    dependencies {
+        implementation "org.scala-lang:scala-library:${scalaVersion}"
+
+        compileOnly "org.apache.spark:spark-core_${scalaCompatVersion}:${sparkVersion}"
+        compileOnly "org.apache.spark:spark-sql_${scalaCompatVersion}:${sparkVersion}"
+        compileOnly "org.apache.spark:spark-streaming_${scalaCompatVersion}:${sparkVersion}"
+
+        implementation "io.delta:delta-core_${scalaCompatVersion}:${deltaVersion}"
+
+        testImplementation "org.scalatest:scalatest_${scalaCompatVersion}:3.2.17"
+    }
+
+}

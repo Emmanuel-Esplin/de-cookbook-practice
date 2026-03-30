@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Spark output
+chapter*/data/output/
+chapter*/spark-warehouse/
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
