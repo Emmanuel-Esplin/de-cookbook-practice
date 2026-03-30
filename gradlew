@@ -116,6 +116,18 @@ esac
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
+java_major_version() {
+    version_output=$("$1" -version 2>&1)
+    first_line=$(printf '%s\n' "$version_output" | sed -n '1p')
+    version=${first_line#*\"}
+    version=${version%%\"*}
+    major=${version%%.*}
+    if [ "$major" = "1" ]; then
+        version_tail=${version#*.}
+        major=${version_tail%%.*}
+    fi
+    echo "$major"
+}
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
@@ -137,6 +149,17 @@ else
 
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
+fi
+
+if "$darwin" ; then
+    CURRENT_JAVA_MAJOR=$(java_major_version "$JAVACMD")
+    if [ -n "$CURRENT_JAVA_MAJOR" ] && [ "$CURRENT_JAVA_MAJOR" -gt 17 ] ; then
+        COMPATIBLE_JAVA_HOME=$(/usr/libexec/java_home -v 11 2>/dev/null)
+        if [ -n "$COMPATIBLE_JAVA_HOME" ] ; then
+            JAVA_HOME=$COMPATIBLE_JAVA_HOME
+            JAVACMD=$JAVA_HOME/bin/java
+        fi
+    fi
 fi
 
 # Increase the maximum file descriptors if we can.
