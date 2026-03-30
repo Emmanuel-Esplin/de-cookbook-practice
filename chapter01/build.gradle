@@ -1,0 +1,6 @@
+description = 'Chapter 01 - Data Ingestion and Extraction with Apache Spark'
+
+dependencies {
+    // All Spark + Delta inherited from root build.gradle
+    // Add chapter-specific deps here as needed
+}
