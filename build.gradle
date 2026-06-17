@@ -1,5 +1,5 @@
 plugins {
-    id 'scala'
+    id 'base'
 }
 
 allprojects {
@@ -13,7 +13,6 @@ allprojects {
 
 subprojects {
     apply plugin: 'scala'
-    apply plugin: 'java'
 
     ext {
         scalaVersion       = '2.12.18'
@@ -39,4 +38,16 @@ subprojects {
         testImplementation "org.scalatest:scalatest_${scalaCompatVersion}:3.2.17"
     }
 
+    //noinspection GroovyAssignabilityCheck
+    sourceSets {
+        main {
+            java { srcDirs = [] }
+            scala { srcDirs = ['src/main/scala'] }
+            resources { srcDirs = ['src/main/resources'] }
+        }
+        test {
+            java { srcDirs = [] }
+            scala { srcDirs = ['src/test/scala'] }
+        }
+    }
 }
