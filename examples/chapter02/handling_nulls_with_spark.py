@@ -97,3 +97,22 @@ from pyspark.ml.feature import Imputer
 # Create a sample DataFrame with missing Values
 data2 = [
     (1, 2.0),
+    (2, None),
+    (3, 5.0),
+    (4, None),
+    (5, 7.0)
+]
+
+df = spark.createDataFrame(data2, ["id", "value"])
+
+# Create an instance of Imputer and specify the input/output columns
+imputer = Imputer(inputCols=["value"], outputCols=["imputed_value"])
+
+# Fit the imputer to the data and transform the DataFrame
+imputer_model = imputer.fit(df)
+imputed_df = imputer_model.transform(df)
+
+imputed_df.show()
+
+# Release the resources
+spark.stop()

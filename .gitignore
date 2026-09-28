@@ -1,11 +1,43 @@
-.gradle
+# Gradle
+.gradle/
+.gradle-local/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 .kotlin
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.python-version
+
+# Local data and notebook output
+chapter*/data/
+**/.ipynb_checkpoints/
+*.ipynb
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+.aws/
+.azure/
+.gcloud/
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*credentials*.json
+*service-account*.json
+
 ### IntelliJ IDEA ###
+.idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -41,3 +73,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+.Rhistory
+.RData

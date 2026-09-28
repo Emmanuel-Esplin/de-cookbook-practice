@@ -1,3 +1,10 @@
+"""Delta Lake table examples
+
+Shows how to create, write and time-travel Delta Lake tables using Spark and Delta.
+
+Usage: ensure `pyspark` and `delta-spark` packages are available and `JAVA_HOME` is set.
+"""
+
 # Import libraries
 from delta import configure_spark_with_delta_pip, DeltaTable
 from pyspark.sql import SparkSession

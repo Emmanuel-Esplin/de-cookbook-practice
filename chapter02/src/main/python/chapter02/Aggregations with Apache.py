@@ -1,4 +1,11 @@
-# Import libraries
+
+"""Aggregations with Spark
+
+Demonstrates groupBy, agg, rollups, cubes and approximate aggregation techniques.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, max, count, min, approx_count_distinct
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DateType

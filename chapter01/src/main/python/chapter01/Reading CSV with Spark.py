@@ -1,3 +1,13 @@
+"""Reading CSV with Spark
+
+Example Spark recipe demonstrating several ways to read CSV files:
+- infer schema
+- provide explicit schema
+- handle nulls, empty values and custom date formats
+
+Usage: ensure `pyspark` is available and `JAVA_HOME` is set, then run with Python.
+"""
+
 
 from pyspark.sql import SparkSession
 

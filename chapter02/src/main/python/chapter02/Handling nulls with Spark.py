@@ -1,3 +1,9 @@
+# Handling nulls with Spark
+
+# Examples showing `dropna`, `fillna`, and SQL expressions to handle missing values.
+
+# Usage: set `JAVA_HOME` and run with `pyspark`.
+
 # Import libraries
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode, col, when

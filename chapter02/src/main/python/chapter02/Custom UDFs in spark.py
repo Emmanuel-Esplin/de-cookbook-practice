@@ -1,4 +1,12 @@
-# Import libraries
+
+"""Custom UDFs in Spark
+
+Shows how to register and use Python UDFs and pandas UDFs for custom transformations.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
+
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode, col
 

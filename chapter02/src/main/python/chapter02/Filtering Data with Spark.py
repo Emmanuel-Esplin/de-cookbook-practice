@@ -1,3 +1,9 @@
+"""Filtering data with Spark
+
+Examples showing predicate filtering, SQL expressions and performance considerations for filtering.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
 # Import libraries
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import transform, col, concat, lit

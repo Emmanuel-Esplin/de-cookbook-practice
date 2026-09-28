@@ -1,3 +1,10 @@
+"""Reading Delta Lake tables
+
+Examples for reading Delta table versions, showing history and time travel queries.
+
+Usage: requires `delta-spark` and `pyspark` with `JAVA_HOME` set.
+"""
+
 # Import libraries
 from delta import configure_spark_with_delta_pip, DeltaTable
 from pyspark.sql import SparkSession

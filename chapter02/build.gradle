@@ -1,0 +1,6 @@
+description = 'Chapter 02 - Data Transformation and Data Manipulation with Apache Spark'
+
+dependencies {
+    // No extra dependencies needed for Chapter 2
+    // All Spark + Delta inherited from root build.gradle
+}

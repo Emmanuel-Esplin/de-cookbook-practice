@@ -1,3 +1,9 @@
+# Basic transformations with Spark
+
+# Shows column selection, withColumn, dropping columns and simple map/transform operations.
+
+# Usage: set `JAVA_HOME` and run with `pyspark`.
+
 # Import libraries
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import transform, col, concat, lit

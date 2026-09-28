@@ -1,3 +1,10 @@
+"""Working with nested data in Spark
+
+Examples showing how to access, flatten and manipulate nested/complex columns (structs, arrays).
+
+Usage: set `JAVA_HOME` and run with `pyspark` installed.
+"""
+
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
@@ -69,7 +76,7 @@ spark = (SparkSession.builder.appName("map_keys_example").getOrCreate())
 data = [
     {"user_info": {"name": "Alice", "age": 28, "email": "alice@example.com"}},
     {"user_info": {"name": "Bob", "age": 25, "email": "bob@example.com"}},
-    {"user_info": {"name": "Charlie", "age": "40", "email": "charlie@example.com"}}
+    {"user_info": {"name": "Charlie", "age": 40, "email": "charlie@example.com"}}
 ]
 
 df2 = spark.createDataFrame(data)

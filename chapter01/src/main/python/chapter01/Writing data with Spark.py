@@ -1,3 +1,10 @@
+"""Writing data with Spark
+
+Examples showing common write formats: CSV, JSON, Parquet and writing partitioned data.
+
+Usage: ensure `pyspark` and `JAVA_HOME` are set.
+"""
+
 
 from pyspark.sql import SparkSession
 

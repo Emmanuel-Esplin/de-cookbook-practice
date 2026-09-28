@@ -1,4 +1,12 @@
 
+"""Processing text data with Spark
+
+Example showing how to read and process text files using Spark transformations.
+
+Usage: set `JAVA_HOME` and run using Python with `pyspark`.
+"""
+
+
 import setuptools
 import distutils
 

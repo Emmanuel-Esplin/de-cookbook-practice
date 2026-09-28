@@ -76,3 +76,27 @@ spark = (SparkSession.builder.appName("map_keys_example").getOrCreate())
 data = [
     {"user_info": {"name": "Alice", "age": 28, "email": "alice@example.com"}},
     {"user_info": {"name": "Bob", "age": 25, "email": "bob@example.com"}},
+    {"user_info": {"name": "Charlie", "age": 40, "email": "charlie@example.com"}}
+]
+
+df2 = spark.createDataFrame(data)
+df2.show(truncate=False)
+
+# Map key function
+(df2.select("user_info",
+            map_keys("user_info").alias("user_info_keys"),
+            map_values("user_info").alias("user_info_values"))
+ .show(truncate=False))
+
+# Explode outer function
+data1 = [
+    {"words": ["hello", "world"]},
+    {"words": ["foo", "bar", "baz"]},
+    {"words": None}
+]
+
+df3 = spark.createDataFrame(data1)
+(df3.select(explode_outer("words").alias("word")).show(truncate=False))
+
+# Release the resources
+spark.stop()

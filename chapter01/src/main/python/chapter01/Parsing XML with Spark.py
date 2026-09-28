@@ -1,3 +1,10 @@
+"""Parsing XML with Spark
+
+Example showing how to parse XML files into DataFrames using Spark.
+
+Usage: requires `pyspark` and `JAVA_HOME` set.
+"""
+
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *

@@ -1,4 +1,20 @@
+
+"""Joins with Spark
+
+Demonstrates inner, left, right, full and cross joins, plus broadcast joins for small tables.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
+
 # Import libraries
+"""Joins with Spark
+
+Demonstrates inner, left, right, full and cross joins, plus broadcast joins for small tables.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
+
+import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import broadcast
 

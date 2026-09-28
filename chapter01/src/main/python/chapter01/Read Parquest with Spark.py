@@ -1,3 +1,16 @@
+"""Read Parquet with Spark
+
+Example showing reading Parquet files and working with schema-on-read.
+
+Usage: requires `pyspark` and `JAVA_HOME`.
+"""
+
+"""Read Parquet with Spark
+
+Example showing reading Parquet files and working with schema-on-read.
+
+Usage: requires `pyspark` and `JAVA_HOME`.
+"""
 
 from pyspark.sql import SparkSession
 

@@ -1,3 +1,11 @@
+"""Window functions with Spark
+
+Demonstrates use of window functions like `row_number`, `lead`, `lag`, and rolling aggregates
+with partitioning and ordering.
+
+Usage: set `JAVA_HOME` and run with `pyspark`.
+"""
+
 # Import libraries
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, row_number, lead, lag, count, avg

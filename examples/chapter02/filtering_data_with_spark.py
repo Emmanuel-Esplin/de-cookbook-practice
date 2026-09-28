@@ -96,3 +96,19 @@ df_nobel_prizes_exploded = (
     .withColumn("laureates",explode(col("laureates")))
     .select(col("category"),
             col("year"),
+            col("overallMotivation"),
+            col("laureates"))
+)
+
+filtered_df = (
+    df_nobel_prizes_exploded
+    .filter(
+        (col("laureates").getItem("firstname") == "Albert")
+        & (col("laureates").getItem("surname") == "Einstein")
+    )
+)
+
+filtered_df.show(truncate=False)
+
+# Release the resources
+spark.stop()

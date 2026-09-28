@@ -1,3 +1,9 @@
+"""Reading JSON with Spark
+
+Example demonstrating reading JSON files into DataFrames and exploring schema/content.
+
+Usage: requires `pyspark` and `JAVA_HOME` set.
+"""
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
