@@ -1,6 +1,6 @@
 # Data Engineering Cookbook
 
-Practical Apache Spark recipes for learning data engineering with Python, Scala, and Gradle. The repository is organized by cookbook chapter, with runnable examples kept under `examples/`.
+Practical Apache Spark recipes for learning data engineering with Python, Scala, and Gradle. The repository is organized by cookbook chapter; each chapter is a Gradle module whose PySpark recipes live in a Python package of the same name.
 
 **Repository:** [`Emmanuel-Esplin/de-cookbook-practice`](https://github.com/Emmanuel-Esplin/de-cookbook-practice)
 **Project slug:** `de-cookbook-practice`
@@ -9,28 +9,25 @@ Practical Apache Spark recipes for learning data engineering with Python, Scala,
 
 | Path | Purpose |
 | --- | --- |
-| `chapter01/` | Foundational Spark input/output, parsing, and text-processing recipes. |
-| `chapter02/` | Transformations, filtering, joins, null handling, aggregations, UDFs, and windows. |
-| `chapter03/` | Delta Lake table examples. |
-| `chapter*/src/main/python/` | Chapter-specific Python implementations. |
-| `chapter*/src/main/scala/` | Chapter-specific Scala implementations. |
-| `chapter*/src/test/scala/` | Scala tests for chapter modules. |
-| `chapter*/notebooks/` | Local notebook workspace; notebook files are excluded until outputs are reviewed and sanitized. |
-| `examples/chapterXX/` | Standalone, directly runnable Python recipe entry points. |
-| `src/main/`, `src/test/` | Root-project source and test locations for shared code. |
-| `gradle/wrapper/` | Gradle Wrapper configuration and wrapper JAR. |
-| `gradlew`, `gradlew.bat` | Reproducible Gradle launchers for macOS/Linux and Windows. |
-| `build.gradle` | Shared Gradle plugins, repositories, dependency versions, and Scala/Spark configuration. |
-| `settings.gradle` | Root project name and included chapter modules. |
-| `.gitignore` | Excludes local data, credentials, environments, notebooks, and generated files. |
-| `SECURITY.md` | Security reporting and sensitive-data handling policy. |
+| `chapter01/` | Data ingestion and extraction: CSV, JSON, Parquet, XML, text, nested data, writing data. |
+| `chapter02/` | Transformations, filtering, joins, null handling, aggregations, UDFs, and window functions. |
+| `chapter03/` | Delta Lake tables. |
+| `chapterXX/src/main/python/chapterXX/` | The chapter's PySpark recipes, one runnable script per recipe. |
+| `chapterXX/src/main/scala/`, `chapterXX/src/test/scala/` | Scala recipes and ScalaTest suites (compiled by Gradle). |
+| `chapterXX/data/input/`, `chapterXX/data/output/` | Local datasets and generated output. Not published. |
+| `chapterXX/notebooks/` | Local notebook workspace. Not published until outputs are reviewed and sanitized. |
+| `tests/` | Pytest checks for recipe conventions and the Spark/Delta environment. |
+| `build.gradle` | Shared Scala/Spark/Delta versions for all chapter modules. |
+| `settings.gradle` | Included chapter modules. |
+| `requirements.txt`, `requirements-dev.txt` | Pinned Python runtime and development dependencies. |
+| `pyproject.toml` | Ruff and pytest configuration. |
 
-Keep new recipes in the chapter that owns the topic. Use `examples/` for standalone entry points; link to an existing implementation instead of copying the same recipe into another location.
+Each recipe has exactly one canonical location: the package of the chapter that owns the topic. Name files in `snake_case`.
 
 ## Requirements
 
 - JDK 11, matching the Gradle Java compatibility configured for this project.
-- Python and PySpark for Python examples. Use the Spark version declared in `build.gradle` (currently Spark 3.4.1); some recipes need additional Spark packages such as Delta Lake or Spark XML.
+- Python 3.9-3.11 (3.12 works with the `setuptools` shim in `requirements.txt`). PySpark and Delta Lake are pinned to the versions in `build.gradle` (Spark 3.4.1, Delta 2.4.0).
 - Gradle is provided by the wrapper; a separate Gradle installation is not required.
 
 ## Getting Started
@@ -38,19 +35,30 @@ Keep new recipes in the chapter that owns the topic. Use `examples/` for standal
 ```bash
 git clone https://github.com/Emmanuel-Esplin/de-cookbook-practice.git
 cd de-cookbook-practice
-./gradlew projects
-./gradlew test
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)   # macOS; point JAVA_HOME at any JDK 11 elsewhere
 ```
 
-Run a standalone Python recipe after installing its dependencies and setting `JAVA_HOME` to a local JDK 11 installation:
+Recipes read `data/input/...` and write `data/output/...` relative to the working directory, so run them from inside their chapter:
 
 ```bash
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 cd chapter01
-python3 ../examples/chapter01/reading_csv_with_spark.py
+python src/main/python/chapter01/reading_csv_with_spark.py
 ```
 
-Recipe-specific package requirements and input paths may vary. Review the selected script before running it and obtain any required sample data from its original, permitted source. Place local inputs under `chapter*/data/input/`; generated output belongs under `chapter*/data/output/`. These directories are intentionally not published.
+Obtain sample data from its original, permitted source and place it under `chapterXX/data/input/`. The XML recipe downloads `com.databricks:spark-xml` at startup, and Delta recipes use `delta-spark`.
+
+## Checks
+
+```bash
+ruff check .                                   # lint
+pytest                                         # all Python tests
+pytest tests/test_recipes.py -k reading_csv    # checks for a single recipe
+./gradlew build                                # compile and test Scala modules
+```
+
+CI runs the same checks on every push to `master` and on pull requests.
 
 ## Data and Secrets
 
@@ -58,4 +66,4 @@ Never commit credentials, private keys, personal or financial data, local datase
 
 ## Contributing
 
-Create a focused branch for each change, keep a recipe in one canonical location, and run the relevant Gradle task or Python example before opening a pull request. Do not add data files unless their source, license, and privacy status are clear and publication is explicitly intended.
+Create a focused branch for each change and use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `refactor:`, `docs:`, `build:`, `test:`, `chore:`). Keep a recipe in one canonical location, and make sure `ruff check .`, `pytest`, and the recipe itself pass before opening a pull request. Do not add data files unless their source, license, and privacy status are clear and publication is explicitly intended.

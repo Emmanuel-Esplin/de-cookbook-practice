@@ -14,6 +14,13 @@ __pycache__/
 venv/
 env/
 .python-version
+.pytest_cache/
+.ruff_cache/
+
+# Spark and Delta Lake local artifacts
+spark-warehouse/
+metastore_db/
+derby.log
 
 # Local data and notebook output
 chapter*/data/
