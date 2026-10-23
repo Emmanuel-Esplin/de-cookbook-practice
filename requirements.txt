@@ -1,0 +1,8 @@
+# Runtime dependencies for the PySpark recipes.
+# Keep pyspark in sync with sparkVersion and delta-spark with deltaVersion in build.gradle.
+pyspark==3.4.1
+delta-spark==2.4.0
+# pyspark.ml (used by text-processing recipes) requires numpy; PySpark 3.4 predates numpy 2.
+numpy<2
+# PySpark 3.4 imports distutils, which Python 3.12 removed; setuptools provides a compatible shim.
+setuptools<81; python_version >= "3.12"
