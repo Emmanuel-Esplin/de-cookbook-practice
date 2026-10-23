@@ -7,7 +7,7 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 
 # Import libraries
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode, col, when
+from pyspark.sql.functions import col, explode, when
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -91,8 +91,8 @@ df_with_processed_names = df.withColumn("processedName", process_name_udf(df["na
 df_with_processed_names.show()
 
 # Handling null values in machine learning pipelines
-from pyspark.sql import SparkSession
 from pyspark.ml.feature import Imputer
+from pyspark.sql import SparkSession
 
 # Create a sample DataFrame with missing Values
 data2 = [

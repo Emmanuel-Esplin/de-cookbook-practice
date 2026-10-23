@@ -6,11 +6,9 @@ Usage: set `JAVA_HOME` and run using Python with `pyspark`.
 """
 
 
-import setuptools
-import distutils
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
+from pyspark.sql.functions import explode, expr, regexp_replace, split
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -41,6 +39,7 @@ df_with_words = (df_clean.withColumn("words", split(df_clean.Text, "\\\\s+")))
 df_with_words.show()
 
 from pyspark.ml.feature import Tokenizer
+
 # Tokenize the text data
 tokenizer = Tokenizer(inputCol='Text', outputCol='words')
 df_with_words = tokenizer.transform(df_clean)

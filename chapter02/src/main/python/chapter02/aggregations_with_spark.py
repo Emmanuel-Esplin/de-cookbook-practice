@@ -7,8 +7,8 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 """
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, max, count, min, approx_count_distinct
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DateType
+from pyspark.sql.functions import approx_count_distinct, col, count, max, min
+from pyspark.sql.types import IntegerType, StringType, StructField, StructType
 
 # Create a SparkSession object
 spark = (SparkSession.builder

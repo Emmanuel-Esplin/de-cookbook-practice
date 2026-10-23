@@ -6,7 +6,7 @@ Usage: ensure `pyspark` and `delta-spark` packages are available and `JAVA_HOME`
 """
 
 # Import libraries
-from delta import configure_spark_with_delta_pip, DeltaTable
+from delta import configure_spark_with_delta_pip
 from pyspark.sql import SparkSession
 
 # Create a SparkSession object

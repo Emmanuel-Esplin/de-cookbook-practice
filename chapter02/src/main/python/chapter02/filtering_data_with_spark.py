@@ -6,7 +6,7 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 """
 # Import libraries
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import transform, col, concat, lit
+from pyspark.sql.functions import col
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -63,7 +63,7 @@ filtered_df = df.filter((col("date_added") >= "2021-02-01") &
 filtered_df.show()
 
 # Filter the DataFrame based on a date range
-filtered_df = df.filter((col("date_added").between("2021-02-01", "2021-03-01")))
+filtered_df = df.filter(col("date_added").between("2021-02-01", "2021-03-01"))
 # Display the filtered DataFrame
 filtered_df.show()
 

@@ -7,7 +7,7 @@ Usage: requires `pyspark` and `JAVA_HOME` set.
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, explode
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -50,7 +50,7 @@ df_flattened = (
 df_flattened.show(truncate=False)
 
 # Use Schema to enforce data types
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+from pyspark.sql.types import ArrayType, IntegerType, StringType, StructField, StructType
 
 schema = StructType(
     [StructField("category", StringType(), True),

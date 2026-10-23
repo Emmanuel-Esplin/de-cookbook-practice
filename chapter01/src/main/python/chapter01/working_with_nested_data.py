@@ -7,7 +7,7 @@ Usage: set `JAVA_HOME` and run with `pyspark` installed.
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, explode, explode_outer, map_values
 
 # Create a SparkSession object
 spark = (SparkSession.builder

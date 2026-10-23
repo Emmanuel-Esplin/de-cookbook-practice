@@ -7,7 +7,7 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 
 # Import libraries
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import transform, col, concat, lit
+from pyspark.sql.functions import col, concat, lit, transform
 
 # Create a SparkSession object
 spark = (SparkSession.builder

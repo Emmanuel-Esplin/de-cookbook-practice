@@ -6,7 +6,7 @@ Usage: requires `pyspark` and `JAVA_HOME` set.
 """
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, explode
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -45,7 +45,7 @@ df_flattened = (df
 df_flattened.show(truncate=False)
 
 # Use Schema to enforce data types
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+from pyspark.sql.types import ArrayType, IntegerType, StringType, StructField, StructType
 
 json_schema = StructType([
     StructField('category', StringType(), True),
@@ -101,7 +101,7 @@ name_age_df = df2.select(json_tuple("json_data", "name", "age").alias("name", "a
 name_age_df.show()
 
 # Flatten and Collect list functions
-from pyspark.sql.functions import flatten, collect_list
+from pyspark.sql.functions import collect_list, flatten
 
 # Create a DataFrame with an array of columns
 df3 = spark.createDataFrame([
@@ -118,7 +118,7 @@ flattened_df = collect_df.select(flatten("data").alias("merged_data"))
 flattened_df.show(truncate=False)
 
 # Use flatten function with a nested array
-from pyspark.sql.functions import explode, flatten, collect_list
+from pyspark.sql.functions import collect_list, explode, flatten
 
 # Create a DataFrame with nested array column
 df4 = spark.createDataFrame([

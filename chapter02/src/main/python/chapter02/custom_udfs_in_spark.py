@@ -8,7 +8,7 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode, col
+from pyspark.sql.functions import col, explode
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -44,10 +44,12 @@ def concat(first_name, last_name):
 
 # Register the function as a UDF
 from pyspark.sql.functions import udf
+
 concat_udf = udf(concat)
 
 # Return UDF type
 from pyspark.sql.types import StringType
+
 concat_udf = udf(concat, StringType())
 
 # Apply UDF
@@ -59,6 +61,7 @@ df_flattened.show()
 # Using UDFs in Spark SQL
 from pyspark.sql.functions import udf
 from pyspark.sql.types import IntegerType
+
 
 # Define a UDF
 def square_udf(x):

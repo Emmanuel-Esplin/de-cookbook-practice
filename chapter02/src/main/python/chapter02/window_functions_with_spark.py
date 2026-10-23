@@ -8,7 +8,7 @@ Usage: set `JAVA_HOME` and run with `pyspark`.
 
 # Import libraries
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, row_number, lead, lag, count, avg
+from pyspark.sql.functions import avg, col, count, lag, lead, row_number
 
 # Create a SparkSession object
 spark = (SparkSession.builder
@@ -32,6 +32,7 @@ df = df.filter(col("country").isNotNull() & col("date_added").isNotNull())
 
 # Define Window function
 from pyspark.sql.window import Window
+
 window_spec = Window.partitionBy("country").orderBy("date_added")
 
 # Use row_number window function
@@ -49,7 +50,7 @@ df = df.withColumn("lag_date_added", lag("date_added").over(window_spec))
 df.select("title", "country", "date_added", "lead_date_added", "lag_date_added").show(3)
 
 # Nested window functions
-from pyspark.sql.functions import sum, lead
+from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
 
 window_spec = Window.partitionBy("country").orderBy("release_year")
@@ -58,7 +59,9 @@ df = df.withColumn("running_total", count("show_id").over(window_spec))
 df = df.withColumn("next_running_total", lead("running_total").over(window_spec))
 
 df = df.withColumn("diff", df["next_running_total"] - df["running_total"])
-(df.filter(df.next_running_total.isNotNull()).select("show_id", "country", "release_year", "running_total", "next_running_total", "diff").show())
+(df.filter(df.next_running_total.isNotNull())
+   .select("show_id", "country", "release_year", "running_total", "next_running_total", "diff")
+   .show())
 
 # Window frames
 data = [(1, 10), (2, 15), (3, 20), (4, 25), (5, 30)]

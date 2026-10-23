@@ -7,7 +7,6 @@ Demonstrates inner, left, right, full and cross joins, plus broadcast joins for 
 Usage: set `JAVA_HOME` and run with `pyspark`.
 """
 
-import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import broadcast
 

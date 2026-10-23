@@ -32,7 +32,7 @@ df.printSchema()
 
 # Read CSV data with an Explicit schema
 
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DateType
+from pyspark.sql.types import DateType, IntegerType, StringType, StructField, StructType
 
 # Define Schema
 schema = StructType([

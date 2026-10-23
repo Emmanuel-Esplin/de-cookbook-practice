@@ -18,7 +18,6 @@ spark = (SparkSession.builder
 spark.sparkContext.setLogLevel("WARN")
 
 # Read CSV file
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DateType
 
 df = (spark.read.format("csv")
       .option("header", "true")
