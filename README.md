@@ -67,3 +67,7 @@ Never commit credentials, private keys, personal or financial data, local datase
 ## Contributing
 
 Create a focused branch for each change and use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `refactor:`, `docs:`, `build:`, `test:`, `chore:`). Keep a recipe in one canonical location, and make sure `ruff check .`, `pytest`, and the recipe itself pass before opening a pull request. Do not add data files unless their source, license, and privacy status are clear and publication is explicitly intended.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Many recipes are adapted from [Data Engineering with Databricks Cookbook](https://github.com/PacktPublishing/Data-Engineering-with-Databricks-Cookbook), also MIT licensed, so its copyright notice is kept alongside this repository's.
