@@ -1,6 +1,6 @@
 # Data Engineering Cookbook
 
-Practical Apache Spark recipes for learning data engineering with Python, Scala, and Gradle. The repository is organized by cookbook chapter; each chapter is a Gradle module whose PySpark recipes live in a Python package of the same name.
+Practical Apache Spark recipes for learning data engineering with PySpark and Delta Lake, adapted from Packt's [Data Engineering with Databricks Cookbook](https://github.com/PacktPublishing/Data-Engineering-with-Databricks-Cookbook). The repository is organized by cookbook chapter; each chapter is a Gradle module whose PySpark recipes live in a Python package of the same name.
 
 **Repository:** [`Emmanuel-Esplin/de-cookbook-practice`](https://github.com/Emmanuel-Esplin/de-cookbook-practice)
 **Project slug:** `de-cookbook-practice`
@@ -13,11 +13,10 @@ Practical Apache Spark recipes for learning data engineering with Python, Scala,
 | `chapter02/` | Transformations, filtering, joins, null handling, aggregations, UDFs, and window functions. |
 | `chapter03/` | Delta Lake tables. |
 | `chapterXX/src/main/python/chapterXX/` | The chapter's PySpark recipes, one runnable script per recipe. |
-| `chapterXX/src/main/scala/`, `chapterXX/src/test/scala/` | Scala recipes and ScalaTest suites (compiled by Gradle). |
 | `chapterXX/data/input/`, `chapterXX/data/output/` | Local datasets and generated output. Not published. |
 | `chapterXX/notebooks/` | Local notebook workspace. Not published until outputs are reviewed and sanitized. |
 | `tests/` | Pytest checks for recipe conventions and the Spark/Delta environment. |
-| `build.gradle` | Shared Scala/Spark/Delta versions for all chapter modules. |
+| `build.gradle` | Shared Spark and Delta versions for all chapter modules. The Gradle and Scala setup is scaffolding: there are no Scala sources yet. |
 | `settings.gradle` | Included chapter modules. |
 | `requirements.txt`, `requirements-dev.txt` | Pinned Python runtime and development dependencies. |
 | `pyproject.toml` | Ruff and pytest configuration. |
@@ -55,7 +54,7 @@ Obtain sample data from its original, permitted source and place it under `chapt
 ruff check .                                   # lint
 pytest                                         # all Python tests
 pytest tests/test_recipes.py -k reading_csv    # checks for a single recipe
-./gradlew build                                # compile and test Scala modules
+./gradlew build                                # check the Gradle build (no Scala sources yet)
 ```
 
 CI runs the same checks on every push to `master` and on pull requests.
